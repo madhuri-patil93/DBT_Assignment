@@ -1,12 +1,6 @@
 ====================================================================
 /*********************Exersice-1***********************************/
 ====================================================================
-	show databases;
-
-	create database cdac_ass;
-
-	use cdac_ass;
-
 
 1.	create table SEMP
 
@@ -136,13 +130,13 @@ city varchar(20)
 	
 Insert into  J
 values
-('J1', 'Ketaki','Amritsar'),
+('J5', 'Ketaki1','Amritsar'),
 	
-('J2', 'Rama','Navi_Mumbai'),
+('J6', 'Rama2','Navi_Mumbai'),
 	
-('J3', 'Sama','Indore'),
+('J7', 'Sama3','Indore'),
 
-	('J4', 'Nisha', 'Bhopal');
+	('J8', 'Nisha4', 'Bhopal');
 =========================================================================
 	create table SPJ
 
@@ -183,9 +177,10 @@ Insert into  SPJ
 13.	select * from S where not city='Kolhapur';
 14.	select city from S;
 15.	select `P#`,PNAME,COLOUR,Weight,City, (Weight*1000) as Miligram,(Weight/1000) as Kilogram from P;
-==========================================================================================================================================================================
+
+
 ====================================================================
-/*********************Exersice-2***********************************/
+/*******************************************Exersice-2***********************************/
 ====================================================================
 
 1. 	Display the Supplier table in the descending order of CITY.
@@ -221,7 +216,7 @@ Insert into  SPJ
 
 
 ====================================================================
-/*********************Exersice-3***********************************/
+/************************************Exersice-3*******************************************************/
 ====================================================================
 
 1.	Display all the Supplier names with the initial letter capital.
@@ -256,7 +251,7 @@ Insert into  SPJ
 
 
 ====================================================================
-/*********************Exersice-4***********************************/
+/******************************************Exersice-4************************************************/
 ====================================================================
 
 1. 	Display the minimum Status in the Supplier table.
@@ -317,7 +312,7 @@ from s
 
 
 ====================================================================
-/*********************Exersice-5***********************************/
+/**************************************Exersice-5*******************************************************/
 ====================================================================
 
 1. 	Display the Supplier name and the Quantity sold.
@@ -353,6 +348,27 @@ from s
 
 11. Display all the Employee names and the name of their Managers.
 ====>
+
+=========================================================================
+/*****************************************Exersice-6********************************************************/
+========================================================================
+1)select * from s where status in(select status from s where sname='clark') and sname <> 'clark';
+
+2)select * from emp where deptno=(select deptno from emp where empname='miller');
+
+3)select * from p where weight>(select weight from p where colour='red');
+
+4)select * from j where city=(select city from j where jname='tape');
+
+5)select * from p where weight<(select weight from p where colour='green');
+
+6)select * from s where `s#`=(select `s#` from spj where qty=(select max(qty) from spj));
+
+7)select * from emp where sal=(select min(sal) from emp); 
+
+8)select sname,city, max(sum_qua) from (select sname,city, sum(qty) as 'sum_qua' from s,spj where s.`s#`=spj.`s#` group by s.`s#`) as tempp;
+
+9)select deptno,max(count) from (select deptno,count(*) count from emp group by deptno) as tempp; 
 
 
 
